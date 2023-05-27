@@ -1,5 +1,5 @@
-## LIFX LAN Switch Project
-## Written by Cooliew and Noxx
+# LIFX LAN Switch Project
+# Written by Cooliew and Noxx
 
 from lifxlan import LifxLAN
 from gpiozero import RotaryEncoder, Button
