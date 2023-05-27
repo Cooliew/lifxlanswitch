@@ -7,20 +7,20 @@ from gpiozero import RotaryEncoder, Button
 rotor = RotaryEncoder(17, 18, wrap=False, max_steps=15)
 lifx = LifxLAN()
 devices = lifx.get_lights()
+for device in devices:
+	print(device.get_label())
+	if device.get_label() == "Terrarium Lamp":
+		light = device
+else:
+	print('List finished')
+	print(light.get_label(), ' selected.')
+colour = list(light.get_color())
+currentSteps = int((((colour[2] / 65535) * 2) - 1) * 30)
 
 def main():
-	for device in devices:
-		print(device.get_label())
-		if device.get_label() == "Terrarium Lamp":
-			light = device
-	else:
-		print('List finished')
-		print(light.get_label(), ' selected.')
-	colour = list(light.get_color())
-	currentSteps = int((((colour[2]/65535)*2)-1)*30)
 	while True:
 		rotor.steps = currentSteps
-		rotor.wait_for_rotate(30)
+		rotor.wait_for_rotate()
 		rotor.when_rotated = changeColour
 
 def changeColour():
