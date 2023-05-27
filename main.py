@@ -16,10 +16,10 @@ else:
 	print(light.get_label(), ' selected.')
 colour = list(light.get_color())
 currentSteps = int((((colour[2] / 65535) * 2) - 1) * 30)
+rotor.steps = currentSteps
 
 def main():
 	while True:
-		rotor.steps = currentSteps
 		rotor.wait_for_rotate()
 		rotor.when_rotated = changeColour
 
