@@ -4,7 +4,7 @@
 from lifxlan import LifxLAN
 from gpiozero import RotaryEncoder, Button
 
-rotor = RotaryEncoder(17, 18, wrap=False, max_steps=15)
+rotor = RotaryEncoder(17, 18, wrap=False, max_steps=30)
 lifx = LifxLAN()
 devices = lifx.get_lights()
 for device in devices:
