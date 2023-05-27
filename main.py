@@ -21,7 +21,7 @@ rotor.steps = currentSteps
 def main():
 	while True:
 		rotor.wait_for_rotate()
-		rotor.when_rotated = changeColour
+		rotor.when_rotated = dim(2000, light)
 
 def changeColour():
 	colour[2] = int(((rotor.value+1)/2)*65535)
