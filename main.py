@@ -25,14 +25,12 @@ for device in devices:
 print('List finished')
 print(light.get_label(), 'selected.')
 
-
 def main():
 	controller()
 
 def controller():
-	with canvas(device) as draw:
-		draw.rectangle(device.bounding_box, outline="white", fill="black")
-		draw.text((30, 40), "Hello World", fill="white")
+	with canvas(device, dither=True) as draw:
+		draw.rectangle((10, 10, 30, 30), outline="white", fill="red")
 	button.when_pressed = switchMode
 	rotor.when_rotated = setBrightness
 	pause()
