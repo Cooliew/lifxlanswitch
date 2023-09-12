@@ -4,6 +4,12 @@
 from lifxlan import LifxLAN
 from gpiozero import RotaryEncoder, Button
 from signal import pause
+from luma.core.interface.serial import spi
+from luma.core.render import canvas
+from luma.oled.device import ssd1351
+
+serial = spi(device=0, port=0)
+device = ssd1351(serial)
 
 rotor = RotaryEncoder(17, 18, wrap=True, max_steps=0)
 button = Button(27)
@@ -24,6 +30,9 @@ def main():
 	controller()
 
 def controller():
+	with canvas(device) as draw:
+		draw.rectangle(device.bounding_box, outline="white", fill="black")
+		draw.text((30, 40), "Hello World", fill="white")
 	button.when_pressed = switchMode
 	rotor.when_rotated = setBrightness
 	pause()
