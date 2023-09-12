@@ -24,11 +24,11 @@ for device in devices:
 	if device.get_label() == "Terrarium Lamp":
 		lightDevice = device
 
+canvas.clear()
 with canvas(displayDevice) as draw:
 	draw.rectangle(displayDevice.bounding_box, outline="white", fill="black")
-	draw.text((30, 40), "List finished", fill="white")
-	draw.text((30, 60), lightDevice.get_label() + "selected.", fill="white")
-sleep(5)
+	draw.multiline_text((10, 10), "List finished/n" + lightDevice.get_label() + " selected.", fill="white")
+sleep(2)
 
 def main():
 	controller()
@@ -67,8 +67,10 @@ def setBrightness():
 		elif brightness > 65535:
 			brightness = 65535
 		colour[2] = brightness
-		print(str(round((brightness / 65535) * 100)) + "%")
 		lightDevice.set_color(colour, 500, True)
+		canvas.clear()
+		with canvas(displayDevice) as draw:
+			draw.rounded_rectangle(displayDevice.bounding_box, radius=10, fill=draw.hsl(round((brightness / 65535) * 100),100,50),outline="white", width=2)
 	except Exception as error:
 		print("An exception occurred:", error)
 
