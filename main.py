@@ -89,11 +89,11 @@ def setColour():
 		elif hue > 65535:
 			hue -= 65535
 		colour[0] = hue
+		lightDevice.set_color(colour, 500, True)
 		with canvas(displayDevice) as draw:
-			hslColour = ImageColor.getrgb(hsl((round((hue / 65535)) * 360) * 100), 100, 50)
+			hslColour = getrgb(hsl((round((hue / 65535)) * 360) * 100), 100, 50)
 			draw.rectangle(displayDevice.bounding_box, fill="black")
 			draw.rounded_rectangle(displayDevice.bounding_box, radius=10, fill=hslColour,outline="white", width=2)
-		lightDevice.set_color(colour, 500, True)
 	except Exception as error:
 		print("An exception occurred:", error)
 
