@@ -69,8 +69,9 @@ def setBrightness():
 		colour[2] = brightness
 		lightDevice.set_color(colour, 500, True)
 		with canvas(displayDevice) as draw:
+			hslColour = PIL.ImageColor.getrgb(hsl(round((brightness / 65535) * 100),100,50))
 			draw.rectangle(displayDevice.bounding_box, fill="black")
-			draw.rounded_rectangle(displayDevice.bounding_box, radius=10, fill=draw.hsl(round((brightness / 65535) * 100),100,50),outline="white", width=2)
+			draw.rounded_rectangle(displayDevice.bounding_box, radius=10, fill=hslColour,outline="white", width=2)
 	except Exception as error:
 		print("An exception occurred:", error)
 
