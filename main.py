@@ -70,6 +70,7 @@ def setBrightness():
 		lightDevice.set_color(colour, 500, True)
 		canvas.clear()
 		with canvas(displayDevice) as draw:
+			draw.rectangle(displayDevice.bounding_box, fill="black")
 			draw.rounded_rectangle(displayDevice.bounding_box, radius=10, fill=draw.hsl(round((brightness / 65535) * 100),100,50),outline="white", width=2)
 	except Exception as error:
 		print("An exception occurred:", error)
