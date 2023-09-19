@@ -27,7 +27,7 @@ for device in devices:
 with canvas(displayDevice) as draw:
 	draw.rectangle(displayDevice.bounding_box, fill="black")
 	draw.rectangle(displayDevice.bounding_box, outline="white", fill="black")
-	draw.multiline_text((10, 10), "List finished/n" + lightDevice.get_label() + " selected.", fill="white")
+	draw.multiline_text((10, 10), "List finished\n" + lightDevice.get_label() + " selected.", fill="white", spacing=4, align='left', stroke_width=1)
 sleep(2)
 
 def main():
