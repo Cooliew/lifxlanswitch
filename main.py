@@ -90,8 +90,8 @@ def setColour():
 			hue -= 65535
 		colour[0] = hue
 		lightDevice.set_color(colour, 500, True)
+		hslColour = canvas.getrgb(hsl((round((hue / 65535)) * 360) * 100), 100, 50)
 		with canvas(displayDevice) as draw:
-			hslColour = getrgb(hsl((round((hue / 65535)) * 360) * 100), 100, 50)
 			draw.rectangle(displayDevice.bounding_box, fill="black")
 			draw.rounded_rectangle(displayDevice.bounding_box, radius=10, fill=hslColour,outline="white", width=2)
 	except Exception as error:
